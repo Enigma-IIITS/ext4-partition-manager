@@ -1,5 +1,9 @@
+//doesnt work for unicode
+
 #include <stdio.h>
 #include <stdbool.h>
+
+
 
 bool checker(char * pattern , char * str , int str_offset , int pattern_size)
 {
@@ -31,12 +35,20 @@ bool checker(char * pattern , char * str , int str_offset , int pattern_size)
 
 int main()
 {
-    char str1[] = "u_int bg_block_bitmap_lo_val;\nu_int bg_block_bitmap_hi_val;\nu_int bg_inode_bitmap_lo_val;\nu_int bg_inode_bitmap_hi_val;\nu_int bg_inode_table_lo_val;\nu_int bg_inode_table_hi_val;";
+    //give the string in which you want some text inside to be reoved 
+    char str1[] = "";
     char str2 [sizeof(str1)];
 
-    char pattern[] ="u_int";
+    //give the text that needs to be removed in str1
+    char pattern[] = "";
     int counter1 = 0;
     int counter2 = 0;
+
+    if(pattern[0] == '\0')
+    {
+        printf("Pattern cannot be a null string!");
+        return 0;
+    }
 
     for(int i = 0 ; i < sizeof(str1) ; i++ )
     {
@@ -45,8 +57,7 @@ int main()
             bool ret_val = checker(pattern,str1,counter1,sizeof(pattern)-1);
             if (ret_val == true)
             {
-                counter1 = counter1+(sizeof(pattern)-2);
-                printf("s");
+                counter1 = counter1+(sizeof(pattern)-1);
                 continue;
             }
             else
